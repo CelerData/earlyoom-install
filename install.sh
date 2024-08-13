@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ex
 sudo apt-get install earlyoom
 
 ARCH=$(uname -m)
@@ -14,6 +14,7 @@ else
 fi
 
 sudo curl -o /opt/starrocks-init/earlyoom "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/pkg/$PKG"
+sudo curl -o /opt/starrocks-init/jmap.sh "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/jmap.sh"
 sudo mv /opt/starrocks-init/earlyoom /usr/bin/earlyoom
 sudo chmod a+x /usr/bin/earlyoom
 sudo sed -i 's/^EARLYOOM_ARGS=.*$/EARLYOOM_ARGS="-M 512000 -m 5 -r 600 --ignore-root-user --prefer '\''(^|\/)(starrocks_be|java|agent-service)$'\'' --prefer-only -N \/opt\/starrocks-init\/jmap.sh"/' /etc/default/earlyoom
