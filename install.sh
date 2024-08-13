@@ -7,7 +7,7 @@ ARCH=$(uname -m)
 if [ "$ARCH" = "x86_64" ]; then
     PKG=earlyoom-amd64
 elif [ "$ARCH" = "aarch64" ]; then
-    PKG=earlyoom-arm64
+    PKG=earlyoom-aarch64
 else
     echo "current arch is not supported: $ARCH"
     exit 1
