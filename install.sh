@@ -22,5 +22,6 @@ sudo sed -i '/^DynamicUser=/s/^/#/' /lib/systemd/system/earlyoom.service
 sudo sed -i '/^TasksMax=/s/^/#/' /lib/systemd/system/earlyoom.service
 sudo sed -i '/^MemoryMax=/s/^/#/' /lib/systemd/system/earlyoom.service
 sudo sed -i '/\[Install\]/i ReadWritePaths=\/tmp' /lib/systemd/system/earlyoom.service
+sudo chmod a+x /opt/starrocks-init/jmap.sh
 
 sudo systemctl enable --now earlyoom
