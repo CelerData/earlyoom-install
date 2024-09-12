@@ -30,8 +30,8 @@ fi
 
 
 
-sudo curl -o /opt/starrocks-init/earlyoom "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/pkg/$PKG"
-sudo curl -o /opt/starrocks-init/jmap.sh "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/jmap.sh"
+sudo curl -o /opt/starrocks-init/earlyoom "https://raw.githubusercontent.com/CelerData/earlyoom-install/agent/pkg/$PKG"
+sudo curl -o /opt/starrocks-init/jmap.sh "https://raw.githubusercontent.com/CelerData/earlyoom-install/agent/jmap.sh"
 sudo mv /opt/starrocks-init/earlyoom /usr/bin/earlyoom
 sudo chmod a+x /usr/bin/earlyoom
 sudo sed -i 's/^EARLYOOM_ARGS=.*$/EARLYOOM_ARGS="-M 512000 -m 5 -r 600 --ignore-root-user --prefer '\''(^|\/)(agent-service)$'\'' --prefer-only/' /etc/default/earlyoom
