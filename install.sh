@@ -6,7 +6,7 @@ if [ -f /etc/os-release ]; then
     if [[ "$ID" == "ubuntu" ]]; then
         sudo apt-get install earlyoom
     elif [[ "$ID" == "centos" ]]; then
-        sudo yum install earlyoom
+        sudo yum install earlyoom -y
     else
         echo "This is another Linux distribution: $ID"
         exit 1
