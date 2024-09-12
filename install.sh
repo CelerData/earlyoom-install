@@ -1,21 +1,6 @@
 #!/bin/bash
 set -ex
 
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    if [[ "$ID" == "ubuntu" ]]; then
-        sudo apt-get install earlyoom
-    elif [[ "$ID" == "centos" ]]; then
-        sudo yum install earlyoom -y
-    else
-        echo "This is another Linux distribution: $ID"
-        exit 1
-    fi
-else
-    echo "Cannot determine the Linux distribution."
-    exit 1
-fi
-
 ARCH=$(uname -m)
 
 if [ "$ARCH" = "x86_64" ]; then
@@ -26,6 +11,24 @@ else
     echo "current arch is not supported: $ARCH"
     exit 1
 fi
+
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [[ "$ID" == "ubuntu" ]]; then
+        sudo apt-get install earlyoom
+    elif [[ "$ID" == "centos" ]]; then
+        sudo yum install earlyoom -y
+        PKG=earlyoom-centos
+    else
+        echo "This is another Linux distribution: $ID"
+        exit 1
+    fi
+else
+    echo "Cannot determine the Linux distribution."
+    exit 1
+fi
+
+
 
 sudo curl -o /opt/starrocks-init/earlyoom "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/pkg/$PKG"
 sudo curl -o /opt/starrocks-init/jmap.sh "https://raw.githubusercontent.com/CelerData/earlyoom-install/main/jmap.sh"
