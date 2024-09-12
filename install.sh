@@ -1,6 +1,20 @@
 #!/bin/bash
 set -ex
-sudo apt-get install earlyoom
+
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [[ "$ID" == "ubuntu" ]]; then
+        sudo apt-get install earlyoom
+    elif [[ "$ID" == "centos" ]]; then
+        sudo yum install earlyoom
+    else
+        echo "This is another Linux distribution: $ID"
+        exit 1
+    fi
+else
+    echo "Cannot determine the Linux distribution."
+    exit 1
+fi
 
 ARCH=$(uname -m)
 
