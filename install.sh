@@ -1,6 +1,21 @@
 #!/bin/bash
 set -ex
-sudo apt-get install earlyoom
+
+if [ -f /etc/os-release ]; then
+    OS_ID=$(grep "^ID=" /etc/os-release | cut -d'=' -f2 | tr -d '"')
+
+    if [ "$OS_ID" == "ubuntu" ]; then
+        sudo apt-get install earlyoom
+    elif [ "$OS_ID" == "centos" ]; then
+        sudo yum install earlyoom
+    else
+        echo "current OS is not supported：$OS_ID"
+    fi
+else
+    echo "can not check OS，/etc/os-release does not exists."
+fi
+
+
 
 ARCH=$(uname -m)
 
