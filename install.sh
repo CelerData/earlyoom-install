@@ -20,7 +20,13 @@ fi
 ARCH=$(uname -m)
 
 if [ "$ARCH" = "x86_64" ]; then
-    PKG=earlyoom-amd64
+    if [ "$OS_ID" == "ubuntu" ]; then
+        PKG=earlyoom-amd64
+    elif [ "$OS_ID" == "centos" ]; then
+        PKG=earlyoom-centos
+    else
+        echo "current OS is not supported：$OS_ID"
+    fi
 elif [ "$ARCH" = "aarch64" ]; then
     PKG=earlyoom-aarch64
 else
