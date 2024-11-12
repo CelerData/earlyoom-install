@@ -7,7 +7,7 @@ if [ -f /etc/os-release ]; then
     if [ "$OS_ID" == "ubuntu" ]; then
         sudo apt-get install earlyoom
     elif [ "$OS_ID" == "centos" ]; then
-        sudo yum install earlyoom
+        sudo yum install earlyoom -y
     else
         echo "current OS is not supported：$OS_ID"
     fi
